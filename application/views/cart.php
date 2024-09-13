@@ -102,7 +102,7 @@
 <script type="text/javascript">
 	function update_qty(row_id, qty){
 		Swal.fire({
-            imageUrl: '<?= base_url() ?>assets/html/img/200w.gif',
+            imageUrl: '<?= base_url() ?>assets/html/loading/lg.gif',
             imageHeight: 200,
             imageAlt: 'A tall image',
             showCancelButton: false,

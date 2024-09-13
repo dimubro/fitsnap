@@ -69,7 +69,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-12">
                             <div class="product_thumb countdown">
-                                <a href="single-product.html"><img src="<?=base_url()?>assets/html/img/product/product45.jpg" alt=""></a>
+                                <a href="javascript:void"><img src="<?=base_url()?>assets/html/img/product/product45.jpg" alt=""></a>
                                 
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 
                                 
                                 <div class="product_desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique saepe consectetur possimus perferendis, accusantium.</p>
+                                    <p>Upload your photo to get tailored outfit recommendations based on your unique features, like body shape and skin tone. Discover clothing that fits and complements your style, all from our store!</p>
                                 </div>
                                 
                                 <div class="product_button">
