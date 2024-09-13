@@ -76,21 +76,16 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="countdown_product_content">
                                 <div class="product_name">
-                                    <h2><a href="single-product.html">Aesthetica Cosmetics</a></h2>
+                                    <h2><a href="javascript:void()">Try your best outfit</a></h2>
                                 </div>
                                 
-                                <div class="product_price">
-                                    <span class="current_price">$65.00</span>
-                                    <span class="old_price">$68.00</span>
-                                </div>
+                                
                                 <div class="product_desc">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique saepe consectetur possimus perferendis, accusantium.</p>
                                 </div>
-                                <div class="product_timing">
-                                    <div data-countdown="2022/12/15"></div>
-                                </div>
+                                
                                 <div class="product_button">
-                                    <a href="<?=base_url()?>try-your-best-outfit" data-bs-toggle="tooltip" data-placement="top" title="add to cart">Try your best outfit</a>
+                                    <a href="<?=base_url()?>try-your-best-outfit" data-bs-toggle="tooltip" data-placement="top" >Try your best outfit</a>
                                 </div>
                             </div>
                         </div>
