@@ -69,7 +69,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-12">
                             <div class="product_thumb countdown">
-                                <a href="javascript:void"><img src="<?=base_url()?>assets/html/img/product/product45.jpg" alt=""></a>
+                                <a href="javascript:void"><img src="<?=base_url()?>assets/html/img/banner/image_upload_banner.jpg" alt=""></a>
                                 
                             </div>
                         </div>

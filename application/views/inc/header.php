@@ -71,7 +71,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-2">
                                 <div class="logo">
-                                    <a href="<?=base_url()?>l"><img src="<?=base_url()?>assets/html/img/logo/logo.png" alt=""></a>
+                                    <a href="<?=base_url()?>"><img src="<?=base_url()?>assets/html/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
