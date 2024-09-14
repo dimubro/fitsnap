@@ -53,34 +53,32 @@ class Home extends Front_Controller
     }
   }
   public function load_model(){
-    $flask_api_url = 'http://localhost:5000/predict'; // Change this to your Flask server URL
-
-    // Image URL you want to send for prediction
+    $flask_api_url = 'http://localhost:5000/predict';  
     $image_url = base_url().'media/customer_images/'.$this->session->uploaded_image;
 
-    // Create a new cURL resource
+    
     $ch = curl_init($flask_api_url);
 
-    // Create an array of data to send in the POST request
+    
     $data = array(
       'image_url' => $image_url
     );
 
-    // Convert the array to JSON format
+    
     $payload = json_encode($data);
 
-    // Set cURL options
+    
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 
-    // Execute the request and get the response
+    
     $response = curl_exec($ch);
 
-    // Close the cURL resource
+    
     curl_close($ch);
 
-    // Output the response from the Flask API
+    
     $response_data = json_decode($response, true);
     
     $this->session->set_userdata('age', $response_data['age']);
