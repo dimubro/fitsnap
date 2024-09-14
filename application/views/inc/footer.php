@@ -173,11 +173,19 @@
                     //     timer: 1500
                     // })
                     window.location.href = "<?=base_url()?>try-your-best-outfit";
-                } else {
+                } else if(data == 1){
                     Swal.fire({
 
                         icon: 'error',
                         title: 'This does not support',
+                        showConfirmButton: false,
+                        // timer: 1500
+                    })
+                }else if(data == 3){
+                    Swal.fire({
+
+                        icon: 'error',
+                        title: 'Please add a human image',
                         showConfirmButton: false,
                         // timer: 1500
                     })

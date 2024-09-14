@@ -49,7 +49,7 @@ class Home extends Front_Controller
       }
       $this->session->set_userdata('uploaded_image', $this->upload->data('file_name'));
       $this->load_model();
-      echo json_encode(2);
+      
     }
   }
   public function load_model(){
@@ -85,6 +85,12 @@ class Home extends Front_Controller
     
     $this->session->set_userdata('age', $response_data['age']);
     $this->session->set_userdata('gender', $response_data['gender']);
+    if($response_data['age']==""||$response_data['gender']==""){
+
+      echo json_encode(3);
+    }else{
+      echo json_encode(2);
+    }
   }
 
 }
