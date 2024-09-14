@@ -13,9 +13,9 @@
           </div>
       </div>    
 </div>
-<div class="customer_login">
+<div class="customer_login mb-80">
                 <div class="container">
-                    <div class="row">
+                    <div class="row mt-20">
                        <div class="col-lg-3 col-md-3"></div>
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <div class="account_form">

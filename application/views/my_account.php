@@ -13,7 +13,7 @@
             </div>
         </div>    
 </div>
-<section class="main_content_area">
+<section class="main_content_area mb-150">
                 <div class="container">   
                     <div class="account_dashboard">
                         <div class="row">

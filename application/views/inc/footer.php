@@ -2,7 +2,7 @@
             <div class="footer_area">
                 <div class="container">
                     <div class="footer_top">
-                        <div class="row">
+                       <!--  <div class="row">
                             <div class="col-lg-3 col-md-6">
                                 <div class="single_footer">
                                     <h3>About Us</h3>
@@ -59,9 +59,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="copyright_area">
+                    <div class="copyright_area mt-50">
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="copyright_conent">
@@ -71,11 +71,15 @@
                             <div class="col-lg-6 col-md-12">
                                 <div class="footer_menu text-right">
                                     <ul>
-                                        <li><a href="#">Online Shopping</a></li>
-                                        <li><a href="#">Promotions</a></li>
-                                        <li><a href="#">My Orders</a></li>
-                                        <li><a href="#">Help</a></li>
-                                        <li><a href="#">Customer Service</a></li>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="<?=base_url()?>try-your-best-outfit">Try your best outfit</a></li>
+                                        <?php if ($this->session->customer): ?>
+                                        <li><a href="<?=base_url()?>My Acount">My Account</a></li>
+                                        <?php else: ?>
+                                        
+                                        <li><a href="<?=base_url()?>login">Login</a></li>
+                                        <li><a href="<?=base_url()?>register">Register</a></li>
+                                        <?php endif ?>
                                     </ul>
                                 </div>
                             </div>
