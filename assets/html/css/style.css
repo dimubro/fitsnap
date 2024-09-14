@@ -5454,8 +5454,36 @@
 .thank-you-text{
 	font-size: 150px;
 }
-
-
+.try-your-best-button {
+  background: #e53131;
+  padding: 0 28px;
+  margin: 0;
+  border-radius: 4px;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 500;
+  height: 45px;
+  display: inline-block;
+  line-height: 45px;
+  color: #fff;
+}
+.product_button label {
+  background: #e53131;
+  padding: 0 28px;
+  margin: 0;
+  border-radius: 4px;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 500;
+  height: 45px;
+  display: inline-block;
+  line-height: 45px;
+  color: #fff;
+  cursor: pointer;
+}
+.product_button label:hover {
+  background: #242424;
+}
 
 
 

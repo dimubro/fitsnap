@@ -85,7 +85,13 @@
                                 </div>
                                 
                                 <div class="product_button">
-                                    <a href="<?=base_url()?>try-your-best-outfit" data-bs-toggle="tooltip" data-placement="top" >Try your best outfit</a>
+                                    <!-- <a  href="<?=base_url()?>try-your-best-outfit" data-bs-toggle="tooltip" data-placement="top" >Try your best outfit</a> -->
+                                    <!-- <a for="file_upload" href="javascript:void()" data-toggle="modal" data-target="#myModal" >Try your best outfit</a> -->
+                                    <label for="file_upload">Try your best outfit</label>
+                                    <form id="image_upload">
+                                    <input style="display: none;" onchange="upload_image()" type="file" id="file_upload" name="file_upload">
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
