@@ -17,15 +17,27 @@
                 <div class="container">
                     <div class="row shop_reverse">
                         <div class="col-lg-4 col-md-12">
+                            <h5 class="mb-20">Uploaded Image</h5>
                             <div class="sidebar_widget">
                                 
                                 <div class="widget_list widget_banner">
-                                    <img src="<?=base_url()?>assets/html/img/banner/banner26.jpg" alt="">
+                                    <img src="<?=base_url()?>media/customer_images/<?=$this->session->uploaded_image?>" alt="">
             
                                 </div>
                             </div>
+                        <h6 class="mt-15">Summary of image</h6>
+                        <label>Gender: <?=$this->session->gender?></label><br>
+                        <label>Age: <?=$this->session->age?></label><br>
+                        <label>Size: L</label>
+                        <div class="product_button">
+                            <label style="width: 100%;" for="file_upload"><center>Try your best outfit</center></label>
+                                    <form id="image_upload">
+                                    <input style="display: none;" onchange="upload_image()" type="file" id="file_upload" name="file_upload">
+                                    </form>
                         </div>
-                        <div class="col-lg-8 col-md-12">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-lg-7 col-md-12">
                             <div class="shop_wrapper">
                                 <!-- <div class="banner_slider">
                                     <img src="<?=base_url()?>assets/html/img/banner/banner25.jpg" alt="">

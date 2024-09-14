@@ -145,7 +145,46 @@
           confirmButtonText: "Yes, upload it??"
         }).then((result) => {
           if (result.isConfirmed) {
-            
+            var formData = new FormData($("#image_upload")[0]);
+            Swal.fire({
+                imageUrl: '<?= base_url() ?>assets/html/loading/upload.gif',
+                imageHeight: 200,
+                imageAlt: 'A tall image',
+                showCancelButton: false,
+                showConfirmButton: false,
+                // title: 'Uploading Image',
+            })
+            $.ajax({
+            type: 'ajax',
+            method: 'POST',
+            url: "<?php echo base_url() ?>home/uplaod_image",
+            // async:false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(data) {
+                swal.close()
+                if (data == 2) {
+                    // Swal.fire({
+                    //     icon: 'success',
+                    //     title: 'Your work has been saved',
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // })
+                    window.location.href = "<?=base_url()?>try-your-best-outfit";
+                } else {
+                    Swal.fire({
+
+                        icon: 'error',
+                        title: 'This does not support',
+                        showConfirmButton: false,
+                        // timer: 1500
+                    })
+                }
+                }
+
+            });
           }
 })
     }

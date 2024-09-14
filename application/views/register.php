@@ -6,7 +6,7 @@
               <div class="breadcrumb_content">
                   <ul>
                     <li><a href="<?=base_url()?>">home</a></li>
-                    <li class="active">login</li>
+                    <li class="active">Register</li>
                   </ul>
                 </div>
               </div>

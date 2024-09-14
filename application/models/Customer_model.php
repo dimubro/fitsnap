@@ -22,5 +22,8 @@ class Customer_model extends CI_Model
 		$data = $this->db->get('customer');
 		return $data->row();
 	}
+	public function insert_customer_images($data){
+		$this->db->insert('customer_image', $data);
+	}
 	
 }
