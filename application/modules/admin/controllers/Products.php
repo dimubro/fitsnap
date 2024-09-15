@@ -54,6 +54,12 @@ class Products extends MY_Controller
                 }
 			if($ProductId){
 				$res = $this->model->update($ProductId, $post);
+				$this->model->delete_product_ages($ProductId);
+				foreach ($ages as $k => $val) {
+					$ages = array('AgeId' => $val, 
+									'ProductId' =>$ProductId );
+					$this->model->insert_product_age($ages);
+				}
 				if($res){
 					$this->session->set_flashdata('notification', '<div class="alert alert-success">
                     <strong>Success!</strong> Record succesfully updated !!!

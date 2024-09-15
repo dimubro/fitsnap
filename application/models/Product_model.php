@@ -80,4 +80,8 @@ class Product_model extends CI_Model
 		$data = $this->db->get('product_ages');
 		return $data->result();
 	}
+	public function delete_product_ages($ProductId){
+		$this->db->where('ProductId', $ProductId);
+		$this->db->delete('product_ages');
+	}
 }
