@@ -131,6 +131,55 @@
                       
                     </div>
                     <div class="card card_backgroud mt-5 mb-5">
+                      <div class="card-header d-flex justify-content-between align-items-center"><label class="card-title">Other Details</label>
+                    <!-- <a href="<?=base_url()?>admin/Create-User" class="btn btn-primary">Add User</a> -->
+                      </div> 
+                       <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                                 <div class="form-group">
+                                  <label for="sel1">Gender:</label>
+                                  <select id="color_id" name="form[Gender]" required="" onchange="load_colors()" class="form-control">
+                                    <option value="">Select Gender</option>
+                                    <option <?=($obj->Gender==1)?"selected":""?> value="1">Male</option>
+                                    <option <?=($obj->Gender==2)?"selected":""?> value="2">Female</option>
+                                    
+                                  </select>
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                
+                                 <div class="form-group">
+                                  <label for="sel1">Color:</label>
+                                  <select name="form[ColorId]" required="" class="form-control" id="color">
+                                    <option value="">Select Color</option>
+                                    
+                                    
+                                  </select>
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="form-group">
+                                  <label for="sel1">Ages:</label>
+                                  <select multiple="multiple" required="" name="ages[]" class="form-control js-example-basic-single" id="sel1">
+                                    <option value="">Select Age</option>
+                                    <?php foreach ($ages as $k => $val): ?>
+                                        <option <?php foreach ($product_ages as $k => $valla): ?>
+                                        <?php if ($valla->AgeId==$val->AgeId): ?>
+                                            selected
+                                        <?php endif ?>
+                                        <?php endforeach ?> value="<?=$val->AgeId?> "><?=$val->AgeStart?> - <?=$val->EgeEnd?></option>
+                                    <?php endforeach ?>
+                                  </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                       </div>
+                    </div>
+                    <div class="card card_backgroud mt-5 mb-5">
                       <div class="card-header d-flex justify-content-between align-items-center"><label class="card-title">Pricing</label>
                     <!-- <a href="<?=base_url()?>admin/Create-User" class="btn btn-primary">Add User</a> -->
                       </div>
@@ -185,8 +234,14 @@
 </div>
 <?php $this->load->view('include/page_footer'); ?>
 <?php $this->load->view('include/footer'); ?>
+
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
 <script type="text/javascript">
     $(".imgAdd").click(function(){
   $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
@@ -213,6 +268,35 @@ uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(
       
     });
 });
+function load_colors(){
+    var gender = $('#color_id').val();
+    // alert(gender);
+    var color_id = '<?=$obj->ColorId?>';
+    
+    $.ajax({
+            type: 'ajax',
+            method: 'POST',
+            url: "<?php echo base_url() ?>admin/products/get_colors",
+            data: {
+                gender: gender
+            },
+            dataType: 'json',
+            success: function(data) {
+                var html = "<option value=\"\">Select Color</option>";
+                for (var i = 0; i < data.length; i++) {
+                    var select = "";
+                    if(data[i].ColorId==color_id){
+                        select = "selected";
+                        
+                    }else{
+                        select = "";
+                    }
+                    html += '<option '+select+' value="'+data[i].ColorId+'">'+data[i].Color+'</option>';
+                }
+                $('#color').html(html);
+            }
+        });
+}
 function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -275,6 +359,10 @@ $( document ).ready(function() {
     $('#summernote').summernote({
         height:"200px"
     });
+});
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+    load_colors();
 });
 
 </script>

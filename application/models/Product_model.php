@@ -7,7 +7,8 @@ class Product_model extends CI_Model
 		parent::__construct();
 	}
 	public function insert($post){
-		return $this->db->insert('product', $post);
+		$this->db->insert('product', $post);
+		return $this->db->insert_id();
 	}
 	public function get_all(){
 		// $this->db->where('IsDeleted', 0);
@@ -60,5 +61,23 @@ class Product_model extends CI_Model
 	public function delete_group_product_items($GroupId){
 		$this->db->where('GroupId', $GroupId);
 		$this->db->delete('group_products');
+	}
+	public function get_ages(){
+		$data = $this->db->get('ages');
+		return $data->result();
+	}
+	
+	public function get_all_colors($gender){
+		$this->db->where('Gender', $gender);
+		$data = $this->db->get('color');
+		return $data->result();
+	}
+	public function insert_product_age($ages){
+		$this->db->insert('product_ages', $ages);
+	}
+	public function get_product_age($product_id){
+		$this->db->where('ProductId', $product_id);
+		$data = $this->db->get('product_ages');
+		return $data->result();
 	}
 }

@@ -12,14 +12,19 @@ class Products extends MY_Controller
 	}
 	public function index(){
 		$data['records'] = $this->model->get_all();
+
 		$this->load->view('product/index', $data);
 	}
 	public function create(){
 		$data['Category'] = $this->category->get_all();
+		$data['ages'] = $this->model->get_ages();
+		// $data['Color'] = $this->model->get_all_colors();
 		$this->load->view('product/create', $data);
 	}
 	public function edit($product_id){
 		$data['Category'] = $this->category->get_all();
+		$data['product_ages'] = $this->model->get_product_age($product_id);
+		$data['ages'] = $this->model->get_ages();
 		$data['obj'] = $this->model->all_data($product_id);
 		
 		$this->load->view('product/create', $data);
@@ -27,6 +32,7 @@ class Products extends MY_Controller
 	public function save_form(){
 		if ($post = $this->input->post('form')) {
 			$ProductId = $this->input->post('ProductId');
+			$ages = $this->input->post('ages');
 			if($post['IsDiscount']==1){
 				$post['IsDiscount'] = 1;
 			}else{
@@ -59,8 +65,13 @@ class Products extends MY_Controller
 				}
 				redirect(base_url().'admin/Edit-Product/'.$ProductId);
 			}else{
-				$res = $this->model->insert($post);
-				if($res){
+				$product_id = $this->model->insert($post);
+				foreach ($ages as $k => $val) {
+					$ages = array('AgeId' => $val, 
+									'ProductId' =>$product_id );
+					$this->model->insert_product_age($ages);
+				}
+				if($product_id){
 					$this->session->set_flashdata('notification', '<div class="alert alert-success">
                     <strong>Success!</strong> Record succesfully created !!!
                   </div>');
@@ -86,6 +97,12 @@ class Products extends MY_Controller
                   </div>');
 		}
 		redirect(base_url().'admin/Products');
+	}
+	public function get_colors(){
+		$gender = $this->input->post('gender');
+
+		$data = $this->model->get_all_colors($gender);
+		echo json_encode($data);
 	}
 
 
