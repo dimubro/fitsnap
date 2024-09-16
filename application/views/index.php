@@ -76,7 +76,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="countdown_product_content">
                                 <div class="product_name">
-                                    <h2><a href="javascript:void()">Try your best outfit</a></h2>
+                                    <h2><a href="javascript:void()">Try your best outfits</a></h2>
                                 </div>
                                 
                                 
@@ -85,8 +85,7 @@
                                 </div>
                                 
                                 <div class="product_button">
-                                    <!-- <a  href="<?=base_url()?>try-your-best-outfit" data-bs-toggle="tooltip" data-placement="top" >Try your best outfit</a> -->
-                                    <!-- <a for="file_upload" href="javascript:void()" data-toggle="modal" data-target="#myModal" >Try your best outfit</a> -->
+                                    
                                     <label for="file_upload">Try your best outfit</label>
                                     <form id="image_upload">
                                     <input style="display: none;" onchange="upload_image()" type="file" id="file_upload" name="file_upload">

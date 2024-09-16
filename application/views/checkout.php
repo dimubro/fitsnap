@@ -29,46 +29,9 @@
 
                                 </h3>
                                 <?php endif ?>
-                                 <!-- <div id="checkout_login" class="collapse" data-parent="#accordion">
-                                    <div class="checkout_info">
-                                        <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>  
-                                        <form action="#">  
-                                            <div class="form_group mb-20">
-                                                <label>Username or email <span>*</span></label>
-                                                <input type="text">     
-                                            </div>
-                                            <div class="form_group mb-25">
-                                                <label>Password  <span>*</span></label>
-                                                <input type="text">     
-                                            </div> 
-                                            <div class="form_group group_3 ">
-                                                <button type="submit">Login</button>
-                                                <label for="remember_box">
-                                                    <input id="remember_box" type="checkbox">
-                                                    <span> Remember me </span>
-                                                </label>     
-                                            </div>
-                                            <a href="#">Lost your password?</a>
-                                        </form>          
-                                    </div>
-                                </div> -->    
+                               
                             </div>
-                            <!-- <div class="user-actions mb-20">
-                                <h3> 
-                                    <i class="fa fa-file-o" aria-hidden="true"></i>
-                                    Returning customer?
-                                    <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon" aria-expanded="true">Click here to enter your code</a>     
-
-                                </h3>
-                                 <div id="checkout_coupon" class="collapse" data-parent="#accordion">
-                                    <div class="checkout_info">
-                                        <form action="#">
-                                            <input placeholder="Coupon code" type="text">
-                                            <button type="submit">Apply coupon</button>
-                                        </form>
-                                    </div>
-                                </div>    
-                            </div> -->    
+                               
                        </div>
                     </div>
                     <div class="">
@@ -106,17 +69,7 @@
                                               <input required="" value="<?=$this->session->customer->Email?>" name="form[Email]" type="text"> 
 
                                         </div> 
-                                       <!--  <div class="col-12 mb-20">
-                                            <input id="account" type="checkbox" data-bs-target="createp_account" />
-                                            <label for="account" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">Create an account?</label>
-
-                                            <div id="collapseOne" class="collapse one" data-parent="#accordion">
-                                                <div class="card-body1">
-                                                   <label> Account password   <span>*</span></label>
-                                                    <input placeholder="password" type="password">  
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                       
                                         
                                         <div class="col-12">
                                             <div class="order-notes">

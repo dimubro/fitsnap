@@ -25,7 +25,7 @@ class Home extends Front_Controller
   public function suggestions(){
     $age = $this->session->age;
     $skin_tone = $this->session->skine_tone;
-    
+
     $data['Age_range'] = $this->model->get_age_range($age);
     // $skin_tone = 1;
     if($this->session->gender=='Female'){

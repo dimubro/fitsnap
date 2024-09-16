@@ -166,18 +166,13 @@
             success: function(data) {
                 swal.close()
                 if (data == 2) {
-                    // Swal.fire({
-                    //     icon: 'success',
-                    //     title: 'Your work has been saved',
-                    //     showConfirmButton: false,
-                    //     timer: 1500
-                    // })
+                    
                     window.location.href = "<?=base_url()?>try-your-best-outfit";
                 } else if(data == 1){
                     Swal.fire({
 
                         icon: 'error',
-                        title: 'This does not support',
+                        title: 'This file type is not supported.',
                         showConfirmButton: false,
                         // timer: 1500
                     })
