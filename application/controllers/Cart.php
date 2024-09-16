@@ -17,6 +17,7 @@ class Cart extends Front_Controller
   public function add_cart(){
     $procuct_id = $this->input->post('product_id');
     $qty = $this->input->post('qty');
+    $size = $this->input->post('size');
     $product = $this->product->all_data($procuct_id);
       $expiredate = strtotime($product->EndDate);
       $expiredate = strtotime("+1 day", $expiredate);
@@ -34,6 +35,7 @@ class Cart extends Front_Controller
         'id'      => $product->ProductId,
         'qty'     => $qty,
         'price'   => $price,
+        'size'    => $size,
         'name'    => "$product->ProductTitle",
         'Image'   => $product->Image,
         // 'Weight'  =>  $product->Weight

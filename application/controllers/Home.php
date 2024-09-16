@@ -23,8 +23,30 @@ class Home extends Front_Controller
     $this->view('index', $d);
   }
   public function suggestions(){
-    $data['records'] = $this->model->get_suggestion_products();
+    $age = $this->session->age;
+    $skin_tone = $this->session->skine_tone;
+    
+    $data['Age_range'] = $this->model->get_age_range($age);
+    // $skin_tone = 1;
+    if($this->session->gender=='Female'){
+      $gender = 2;
+    }else if($this->session->gender=='Male'){
+      $gender = 1;
+    }
+    if($skin_tone){
+      $data['Status'] = 2;
+    }else{
+      $data['Status'] = 1;
+    }
+    $colors = $this->model->get_skin_tone_colours($skin_tone, $gender);
+    $colo = array();
+    foreach ($colors as $k => $va) {
+      $colo[] = $va->ColorId;
+    }
+    $data['colorss'] = $colors;
+    $data['records'] = $this->model->get_suggestion_products($age, $skin_tone, $gender, $colo);
     $this->view('suggestions', $data);
+    // print_r($data['Age_range']);
   }
   public function thank_you(){
     $this->view('thank_you');
@@ -83,6 +105,8 @@ class Home extends Front_Controller
     
     $this->session->set_userdata('age', $response_data['age']);
     $this->session->set_userdata('gender', $response_data['gender']);
+    $this->session->set_userdata('size', "M");
+    $this->session->set_userdata('skine_tone', "3");
     if($response_data['age']==""||$response_data['gender']==""){
 
       echo json_encode(3);

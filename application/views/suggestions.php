@@ -26,9 +26,12 @@
                                 </div>
                             </div>
                         <h6 class="mt-15">Summary of image</h6>
-                        <label>Gender: <?=$this->session->gender?></label><br>
-                        <label>Age: <?=$this->session->age?></label><br>
-                        <label>Size: L</label>
+                        <!-- <label>Gender: <?=$this->session->gender?></label><br> -->
+                        <label>Your age range is <?=$Age_range->AgeStart?> to <?=$Age_range->EgeEnd?> years.</label><br>
+                        <label><b><?=$this->session->size?></b> size is suitable for your body shape.</label>
+                        <label>Your skin tone is <b>normal</b>. this is Suitable colors for your skin tone include <?php foreach ($colorss as $k => $valla): ?>
+                            <?=$valla->Color?>, 
+                        <?php endforeach ?> colors</label>
                         <div class="product_button">
                             <label style="width: 100%;" for="file_upload"><center>Try your best outfit</center></label>
                                     <form id="image_upload">
@@ -91,15 +94,25 @@
 
                                                         </div>
                                                         <div class="product_desc">
-                                                            <?=$val->Description?>
+                                                            <?=word_limiter($val->Description, 25)?>
                                                         </div>
-                                                        <div class="product_ratting">
-                                                            
+                                                        <div  class="product_ratting">
+                                                             <div class="mt-20 mb-20" class="form-group">
+                                                              
+                                                              <select id="size<?=$k?>" class="form-control">
+                                                                <option value="">Select Size</option>
+                                                                <option <?=($this->session->size=="XS")?"selected":""?> value="XS">Xs</option>
+                                                                <option <?=($this->session->size=="S")?"selected":""?> value="S">S</option>
+                                                                <option <?=($this->session->size=="M")?"selected":""?> value="M">M</option>
+                                                                <option <?=($this->session->size=="L")?"selected":""?> value="L">L</option>
+                                                                <option <?=($this->session->size=="XL")?"selected":""?> value="XL">XL</option>
+                                                              </select>
+                                                            </div> 
                                                         </div>
-                
-                                                        <div class="product_action">
+                                                        <br><br>
+                                                        <div class="product_action mt-20">
                                                            <ul>
-                                                               <li><a  href="javascript:void()" onclick="add_cart(<?=$val->ProductId?>)">+ add to cart</a></li>
+                                                               <li><a  href="javascript:void()" onclick="add_cart(<?=$val->ProductId?>, <?=$k?>)">+ add to cart</a></li>
                                                                
                                                            </ul>
                                                         </div>   
@@ -133,8 +146,19 @@
 <?php $this->load->view('inc/footer'); ?>
 
 <script type="text/javascript">
-    function add_cart(product_id) {
+    function add_cart(product_id, row) {
         var qty = 1;
+        var size = $('#size'+row).val();
+        ;
+        if(size==""){
+            
+            Swal.fire({
+              title: "The Size?",
+              text: "Plese select a size",
+              icon: "question"
+            });
+            return false;
+        }
         Swal.fire({
             imageUrl: '<?= base_url() ?>assets/html/loading/lg.gif',
             imageHeight: 200,
@@ -149,7 +173,7 @@
             url: "<?php echo base_url() ?>cart/add_cart",
 
             data: {
-                product_id: product_id, qty:qty
+                product_id: product_id, qty:qty, size:size
             },
 
             dataType: 'json',

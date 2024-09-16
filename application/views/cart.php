@@ -36,7 +36,7 @@
                                         <tr>
                                            <td class="product_remove"><a href="<?=base_url()?>cart/remove_prodcut/<?=$item['rowid']?>"><i class="fa fa-trash-o"></i></a></td>
                                             <td class="product_thumb"><a href="javascript:void()"><img class="cart-image" src="<?=base_url()?>media/image/<?= $item['Image'] ?>" alt=""></a></td>
-                                            <td class="product_name"><a href="javascript:void()"><?=$item['name']?></a></td>
+                                            <td class="product_name"><a href="javascript:void()"><?=$item['name']?><br><?=$item['size']?></a></td>
                                             <td class="product-price">LKR <?= number_format($item['price'], 2) ?></td>
                                             <td class="product_quantity"><input onchange="update_qty('<?=$item['rowid']?>', this.value)" min="0" max="100" value="<?=$item['qty']?>" type="number"></td>
                                             <td class="product_total">LKR <?= number_format($item['subtotal'], 2) ?></td>
