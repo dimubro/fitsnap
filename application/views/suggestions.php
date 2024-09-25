@@ -29,7 +29,7 @@
                         <!-- <label>Gender: <?=$this->session->gender?></label><br> -->
                         <label>Your age range is <?=$Age_range->AgeStart?> to <?=$Age_range->EgeEnd?> years.</label><br>
                         <label><b><?=$this->session->size?></b> size is suitable for your body shape.</label>
-                        <label>Your skin tone is <b>normal</b>. this is Suitable colors for your skin tone include <?php foreach ($colorss as $k => $valla): ?>
+                        <label>Your skin tone is <b><?=$Skin_tone_data->SkinTone?></b>. this is Suitable colors for your skin tone include <?php foreach ($colorss as $k => $valla): ?>
                             <?=$valla->Color?>, 
                         <?php endforeach ?> colors</label>
                         <div class="product_button">

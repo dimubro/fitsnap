@@ -43,4 +43,9 @@ class Home_model extends CI_Model
 		return $data->row();
 
 	}
+	public function get_skintone($skin_tone){
+		$this->db->where('SkinToneId', $skin_tone);
+		$data = $this->db->get('skin_tone');
+		return $data->row();
+	}
 }

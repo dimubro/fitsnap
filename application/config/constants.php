@@ -89,7 +89,7 @@ define("title","Fitsnap");
 define("email","ulindudimu@live.com");
 
 define('HOST', 'localhost');
-define('DB', 'shopping');
+define('DB', 'fitsnap');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 
