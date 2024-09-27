@@ -104,11 +104,15 @@
                                                               
                                                               <select id="size<?=$k?>" class="form-control">
                                                                 <option value="">Select Size</option>
-                                                                <option <?=($this->session->size=="XS")?"selected":""?> value="XS">Xs</option>
+                                                                <option <?=($this->session->size=="XXS")?"selected":""?> value="XXS">XXS</option>
+                                                                <option <?=($this->session->size=="XS")?"selected":""?> value="XS">XS</option>
                                                                 <option <?=($this->session->size=="S")?"selected":""?> value="S">S</option>
                                                                 <option <?=($this->session->size=="M")?"selected":""?> value="M">M</option>
                                                                 <option <?=($this->session->size=="L")?"selected":""?> value="L">L</option>
                                                                 <option <?=($this->session->size=="XL")?"selected":""?> value="XL">XL</option>
+                                                                <option <?=($this->session->size=="XL")?"selected":""?> value="XL">XL</option>
+                                                                <option <?=($this->session->size=="XL")?"selected":""?> value="XXL">XXL</option>
+                                                                <option <?=($this->session->size=="XL")?"selected":""?> value="XXXL">XXXL</option>
                                                               </select>
                                                             </div> 
                                                         </div>
@@ -243,7 +247,23 @@ function showSizePredictionForm() {
             data: {height:height, weight:weight},
             dataType: 'json',
             success: function(data) {
-
+                swal.close()
+                if(data==4){
+                    Swal.fire({
+                      title: "The Image?",
+                      text: "Please upload your image!!",
+                      icon: "question"
+                    });
+                }else if(data==3){
+                    Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: "Something went wrong!",
+                          
+                        });
+                }else if(data==2){
+                    window.location.href = "<?=base_url()?>try-your-best-outfit";
+                }
             }
         });
       // You can now use these values to send to your server or process further
@@ -251,7 +271,12 @@ function showSizePredictionForm() {
   });
 }
 $(document).ready(function() {
-  showSizePredictionForm();
+ var size = "<?=$this->session->size?>";
+ // alert(size);
+ if(size==""){
+    showSizePredictionForm();
+ }
+  
 });
 </script>
 

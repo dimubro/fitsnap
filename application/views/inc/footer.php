@@ -167,7 +167,7 @@
                 swal.close()
                 if (data == 2) {
                     
-                    // window.location.href = "<?=base_url()?>try-your-best-outfit";
+                    window.location.href = "<?=base_url()?>try-your-best-outfit";
                 } else if(data == 1){
                     Swal.fire({
 

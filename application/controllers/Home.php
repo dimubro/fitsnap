@@ -184,24 +184,59 @@ class Home extends Front_Controller
     // $this->session->set_userdata('skine_tone', "3");
   }
   public function size_prediction(){
-    $height = $this->input->post('height');
-    $weight = $this->input->post('weight');
 
-    
+    // The data to send to the API (make sure to adjust the values according to your needs)
+      $data = array(
+          "weight" => 70,
+          "age" => 25,
+          "height" => 170
+      );
+
+      // Convert the data to JSON
+      $json_data = json_encode($data);
+
+      // Initialize cURL
+      $ch = curl_init('http://127.0.0.1:5000/predict_size');
+
+      // Set the cURL options
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // Return the response instead of outputting it
+      curl_setopt($ch, CURLOPT_POST, true);  // Indicate that this is a POST request
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));  // Set content type to JSON
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);  // Attach the JSON payload
+
+      // Execute the request and get the response
+      $response = curl_exec($ch);
+      // echo $response;
+      // Check for any errors
+      if ($response === false) {
+          echo 'cURL error: ' . curl_error($ch);
+      } else {
+          // Decode the response from JSON
+          $decoded_response = json_decode($response, true);
+          
+          // Print the response
+          echo 'Prediction: ' . $decoded_response['prediction'];
+      }
+
+      // Close the cURL session
+      curl_close($ch);
   }
   public function load_size(){
-    $flask_api_url = 'http://localhost:5000/predict';  
-    
+    if($this->session->age){
 
+
+    $flask_api_url = 'http://localhost:5000/predict';  
+    $heght = $this->input->post('height');
+    $weight = $this->input->post('weight');
     
     $ch = curl_init($flask_api_url);
 
     
     $data = array(
       'type'=>2,
-      'weight' => 70,
-      'age' => 25,
-      'height' => 170
+      'weight' => $weight,
+      'age' => $this->session->age,
+      'height' => $heght
     );
 
     
@@ -233,13 +268,31 @@ class Home extends Front_Controller
     
     
 
-    if($response_data['age']==""||$response_data['gender']==""){
+    if($response_data['prediction']==""){
       // $this->skintone_prediction($image_url);
       echo json_encode(3);
     }else{
       // $this->skintone_prediction($image_url);
+      if($response_data['prediction']==1){
+        $this->session->set_userdata('size', "XL");
+      }elseif($response_data['prediction']==2){
+        $this->session->set_userdata('size', "L");
+      }elseif($response_data['prediction']==3){
+        $this->session->set_userdata('size', "M");
+      }elseif($response_data['prediction']==4){
+        $this->session->set_userdata('size', "S");
+      }elseif($response_data['prediction']==5){
+        $this->session->set_userdata('size', "XXS");
+      }elseif($response_data['prediction']==6){
+        $this->session->set_userdata('size', "XXXL");
+      }elseif($response_data['prediction']==7){
+        $this->session->set_userdata('size', "XXL");
+      }
       echo json_encode(2);
     }
+  }else{
+    echo json_encode(4);
+  }
   }
 }
 
