@@ -28,7 +28,10 @@
                         <h6 class="mt-15">Summary of image</h6>
                         <!-- <label>Gender: <?=$this->session->gender?></label><br> -->
                         <label>Your age range is <?=$Age_range->AgeStart?> to <?=$Age_range->EgeEnd?> years.</label><br>
-                        <label><b><?=$this->session->size?></b> size is suitable for your body shape.</label>
+                        <?php if ($this->session->size): ?>
+                          <label><b><?=$this->session->size?></b> size is suitable for your body shape.</label>  
+                        <?php endif ?>
+                        
                         <label>Your skin tone is <b><?=$Skin_tone_data->SkinTone?></b>. this is Suitable colors for your skin tone include <?php foreach ($colorss as $k => $valla): ?>
                             <?=$valla->Color?>, 
                         <?php endforeach ?> colors</label>
@@ -191,3 +194,67 @@
         });
     }
 </script>
+<script>
+function showSizePredictionForm() {
+  Swal.fire({
+    title: 'Can you support us to predict your size?',
+    html: `
+      <form id="sizeForm">
+        <div style="margin-bottom: 10px;">
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" class="swal2-input" placeholder="Enter your height">
+        </div>
+        <div style="margin-bottom: 10px;">
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" class="swal2-input" placeholder="Enter your weight">
+        </div>
+      </form>
+    `,
+    confirmButtonText: 'Submit',
+    focusConfirm: false,
+    preConfirm: () => {
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      
+      if (!height || !weight) {
+        Swal.showValidationMessage('Please enter both height and weight');
+        return false;
+      }
+      
+      return { height: height, weight: weight };
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const { height, weight } = result.value;
+      console.log(`Height: ${height}, Weight: ${weight}`);
+      Swal.fire({
+                imageUrl: '<?= base_url() ?>assets/html/loading/upload.gif',
+                imageHeight: 200,
+                imageAlt: 'A tall image',
+                showCancelButton: false,
+                showConfirmButton: false,
+                // title: 'Uploading Image',
+            })
+            $.ajax({
+            type: 'ajax',
+            method: 'POST',
+            url: "<?php echo base_url() ?>home/load_size",
+            // async:false,
+            data: {height:height, weight:weight},
+            dataType: 'json',
+            success: function(data) {
+
+            }
+        });
+      // You can now use these values to send to your server or process further
+    }
+  });
+}
+$(document).ready(function() {
+  showSizePredictionForm();
+});
+</script>
+
+
+<!-- Button to trigger the SweetAlert -->
+<!-- <button onclick="showSizePredictionForm()">Predict My Size</button> -->

@@ -25,7 +25,9 @@ class Home extends Front_Controller
   public function suggestions(){
     $age = $this->session->age;
     $skin_tone = $this->session->skine_tone;
+    if($this->session->gender){
 
+    
     $data['Age_range'] = $this->model->get_age_range($age);
     // $skin_tone = 1;
     if($this->session->gender=='Female'){
@@ -46,7 +48,7 @@ class Home extends Front_Controller
     }
     $data['colorss'] = $colors;
     $data['records'] = $this->model->get_suggestion_products($age, $skin_tone, $gender, $colo);
-
+  }
     $this->view('suggestions', $data);
     // print_r($data['Skin_tone_data']);
   }
@@ -85,7 +87,11 @@ class Home extends Front_Controller
 
     
     $data = array(
-      'image_url' => $image_url
+      'image_url' => $image_url,
+      'type'=>1,
+      'weight' => 70,
+      'age' => 25,
+      'height' => 170
     );
 
     
@@ -114,7 +120,7 @@ class Home extends Front_Controller
     
     $this->session->set_userdata('age', $response_data['age']);
     $this->session->set_userdata('gender', $response_data['gender']);
-    $this->session->set_userdata('size', "M");
+    // $this->session->set_userdata('size', "M");
 
     
     if($response_data['skin_tone']['predicted_class']==0){
@@ -176,6 +182,64 @@ class Home extends Front_Controller
     }
     // echo $this->session->skine_tone;
     // $this->session->set_userdata('skine_tone', "3");
+  }
+  public function size_prediction(){
+    $height = $this->input->post('height');
+    $weight = $this->input->post('weight');
+
+    
+  }
+  public function load_size(){
+    $flask_api_url = 'http://localhost:5000/predict';  
+    
+
+    
+    $ch = curl_init($flask_api_url);
+
+    
+    $data = array(
+      'type'=>2,
+      'weight' => 70,
+      'age' => 25,
+      'height' => 170
+    );
+
+    
+    $payload = json_encode($data);
+
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+    
+    $response = curl_exec($ch);
+
+    
+    curl_close($ch);
+
+    
+    $response_data = json_decode($response, true);
+
+    // print_r($response_data);
+
+    
+    $this->session->unset_userdata('size');
+   
+    
+    
+    // $this->session->set_userdata('size', "M");
+
+    
+    
+
+    if($response_data['age']==""||$response_data['gender']==""){
+      // $this->skintone_prediction($image_url);
+      echo json_encode(3);
+    }else{
+      // $this->skintone_prediction($image_url);
+      echo json_encode(2);
+    }
   }
 }
 
